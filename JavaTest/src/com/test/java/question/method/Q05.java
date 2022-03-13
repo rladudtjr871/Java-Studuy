@@ -6,76 +6,43 @@ import java.io.InputStreamReader;
 public class Q05 {
 
 	public static void main(String[] args) throws Exception{
-
-		/*요구사항] 숫자를 2개 입력받아 연산식을 반환하는 메소드를 선언하시오.
-		  조건..
-		  String add(int, int)
-		  String subtract(int, int)
-		  String multiply(int, int)
-		  String divide(int, int)
-		  String mod(int, int)
 		
-		  입력] 첫번째 숫자 : ?
-		  	   두번째 숫자 : ?
-		  	   
-		  출력] ? + ? = ? ... * % / -
-		  
-		  Sol]
-		  1.입력 받을 Bufferdreader 생성
-		  2.각 연산에 맞는 메소드를 생성, int형 가인자 두개를 가진다.
-		  3.입력 받은 값을 후인자로 메소드 호출
-		  
+		/*
+		  -짝수홀수
+		  요구사항] 숫자를 전달하면 '짝수' 혹은 '홀수' 라는 단어를 반환하는 메소드를 선언하시오.
+		 	 조건]String getNumber(int)
+		 	 입력] 숫자 : 5
+		  호출방식] result = getNumber(n); 
+			   	  System.out.printf("입력하신 숫자 '%d'는(은) '%s'입니다.\n", n, result);
+			 출력]입력하신 숫자 '5'는(은) '홀수'입니다.
 		*/
+		
+		//설계
+		//1. BufferdReader로 입력을 받고 입력값을 실인자로한다
+		//2. 짝수홀수를 삼항연산자로 구분하는 메소드를 만든다.
+		//3. 메소드를 호출하여 출력
+		
 		
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		
-		System.out.print("첫번째 숫자: ");
-		int num1 = Integer.parseInt(reader.readLine());
+		System.out.print("숫자 : ");
+		int n = Integer.parseInt(reader.readLine());
 		
-		System.out.print("두번째 숫자: ");
-		int num2 = Integer.parseInt(reader.readLine());
 		
-		int result;
-		result = add(num1, num2);
-		System.out.println(result);
+		String result = getNumber(n);
+		System.out.printf("입력하신 숫자 \'%d\'는(은) %s입니다.\n", n, result);
 		
-		result = subtract(num1, num2);
-		System.out.println(result);
-		
-		result = multiply(num1, num2);
-		System.out.println(result);
-		
-		result = divide(num1, num2);
-		System.out.println(result);
-		
-		result = mod(num1, num2);
-		System.out.println(result);
 		
 		
 	}//main
 
-		public static int add(int n1, int n2) {
-			
-			return n1 + n2;
-		}
+	//홀짝
+	public static String getNumber(int n) {
 		
-		public static int subtract(int n1, int n2) {
-			
-			return n1 - n2;
-		}
-
-		public static int multiply(int n1, int n2) {
+		String oddEven = n % 2 == 0 ? "'짝수'" : "'홀수'";
+		
+		return oddEven;
+	}
 	
-			return n1 * n2;
-		}
-
-		public static double divide(int n1, int n2) {
 	
-			return n1 / n2;
-		}
-
-		public static int mod(int n1, int n2) {
-	
-			return n1 + n2;
-		}
-}
+}//Q06class

@@ -1,37 +1,44 @@
 package com.test.java.question.method;
 
 public class Q02 {
-
 	public static void main(String[] args) {
-
-		//요구사항] 인삿말을 출력하는 메소드 3개를 선언하시오.
+		
+		
+		//고객명
+		//요구사항] 이름을 전달하면 이름뒤에 '님'을 붙여서 반환하는 메소드를 선언하시오.
+		//조건) String getName(String name)
+		//		-name: (이름)
+		//		-return: (이름)님
+		
+		//출력
+		//고객: 홍길동님
+		//고객: 아무개님
 		
 		//설계
-		//1.안녕하세요를 출력하는 hello()메소드를 만든다.
-		//2.소개를 출력하는 introduce()메소드를 만든다.
-		//3.작별 인사를 출력하는 bye()메소드를 만든다.
+		//1. 고객:???을 출력함며 인자로 "이름"을 받는 메소드를 생성한다.
+		//2. 메소드를 호출한다.
 		
 		
-		//메소드 호출
-		hello();
-		introduce();
-		bye();
+		String result;
+		
+		result = getName("홍길동");
+		System.out.printf("고객: %s\n", result);
 
+		result = getName("아무개");
+		System.out.printf("고객: %s\n", result);
+		
 		
 	}//main
 	
-	
-	//메소드  선언
-	public static void hello() {
-		System.out.println("안녕하세요.");
+	//??님
+	public static String getName(String name) {
+		
+		String result = name + "님";
+		
+		return result;
+		
 	}
 	
-	public static void introduce() {
-		System.out.println("저는 홍길동입니다.");
-	}
-
-	public static void bye() {
-		System.out.println("안녕하세요.");
-	}
 	
-}//Q02 class
+	
+}//Q03 Class

@@ -1,39 +1,41 @@
 package com.test.java.question.method;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-
 public class Q01 {
 
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) {
 		
-		//요구사항] 사용자가 페달을 밟은 횟수를 입력하면 자전거가 총 몇 m를 달렸는지 출력하시오.
-		//자전거 바퀴 지름(26인치), 기어비 1:1, 모든 출력 숫자 천단위 표기 
+		
+		//인삿말
+		//요구사항] 인삿말을 출력하는 메소드 3개를 선언하시오.
 		
 		//설계
-		//1. 사용자가 밟은 페달 횟수를 입력 받을 BufferdReader 생성
-		//2. 26인치를 미터로 환산 (0.6604)
-		//3. 원의 둘레를 구하기 위한 3.14
-		//4. 메소드 생성 > 페달 횟수 * 0.6604 * 3.14 * 2
-		//5. printf를 이용해 값 출력
+		//1.안녕하세요를 출력하는 hello()메소드를 만든다.
+		//2.소개를 출력하는 introduce()메소드를 만든다.
+		//3.작별 인사를 출력하는 bye()메소드를 만든다.
 		
-		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		
-		//입력
-		System.out.print("사용자가 페달을 밟은 횟수 : ");
-		int pedal = Integer.parseInt(reader.readLine());
+		//메소드 호출
+		hello();
+		introduce();
+		bye();
+
 		
-		//메소드호출
-		distance(pedal);
-		
+	}//main
+	
+	
+	//인사
+	public static void hello() {
+		System.out.println("안녕하세요.");
 	}
 	
-		//거리 연산 메소드
-		public static void distance(int pedal) {
-			double pi = 3.14;
-			double inch = 0.0254;
-			double result = 26 * pi * inch * pedal;
-			System.out.printf("사용자가 총 %,d회 페달을 밟아 자전거가 총 %,.3fm를 달렸습니다.", pedal, result);
-		}
-		
-}
+	//소개
+	public static void introduce() {
+		System.out.println("저는 홍길동입니다.");
+	}
+
+	//작별인사
+	public static void bye() {
+		System.out.println("안녕히가세요.");
+	}
+	
+}//Q02 class
