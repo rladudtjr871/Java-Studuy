@@ -9,6 +9,7 @@ public class Ex21_switch {
 
 		/*
 		 
+		 
 		 	조건문
 		 	1. if
 		 	2. switch
