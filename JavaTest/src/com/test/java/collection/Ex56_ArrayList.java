@@ -39,6 +39,17 @@ public class Ex56_ArrayList {
 		   
 		   
 		   
+		   interface
+		   - collection
+		   		-List
+		   			- ArrayList
+		   			- Queue
+		   			- Stack
+		   		-Set
+		   		
+		   - Map
+		   
+		   
 		   
 		   
 		   ArrayList 클래스
@@ -53,14 +64,107 @@ public class Ex56_ArrayList {
 		
 		
 		//m1();
-		//m2();
+		m2();
 		//m3();
 		//m4();
-		m5();
+		//m5();
+		//m6();
+		//m7();
 		
 
 	}//main
 
+	
+	private static void m7() {
+
+		ArrayList<Integer> list = new ArrayList<Integer>(10);
+		
+		//*** 컬렉션에 반복적으로 데이터를 넣는 행동 > 가변 특성 유지
+		//1. 가비지 발생 > 비용 발생(4 > 8 > 16 칸짜리 배열을 만들고 복사하고(공간이 부족하면)
+		//2. 배열 복사(깊은복사) 발생 > 비용 발생
+		
+		//위 문제를 해결하는 방법
+		//- ArrayList의 초기 길이를 지정할 수 있다.
+		
+		for (int i=0; i<10; i++) {
+			list.add(i);
+		}
+		
+		list.add(10); //20칸..
+		
+		//*** 이 이후로.. list에 데이터를 추가할 일이 없다.;; > 9칸이 남는다.
+		
+		//확신이 들때만 가끔 호출..
+		list.trimToSize(); //20칸 -> 11칸 줄인다.
+		
+		System.out.println(list.size());
+		
+		
+		
+		
+		//2.
+		int[] num = new int[10];
+		
+		for (int i=0; i<10; i++) {
+			num[i] = i;
+		}
+		
+		
+		//덤프
+		for (int n : list) {
+			System.out.println(n);
+		}
+		
+		for (int n: num) {
+			System.out.println(n);
+		}
+		
+		
+		//ArrayList -> 데이터 -> 1025개 추가 -> 남는 칸 1023개
+		
+		
+	}
+
+	
+	private static void m6() {
+
+		//ArrayList(컬렉션) 특징
+		//1. 내부에 배열을 가지고 있다. == ArrayList를 배열이라고 생각하자
+		//2. ArrayList 클래스의 대부분 기능이 내부 배열을 조작하는 기능들로 구성
+		//3. 길이가 가변 > 데이터를 넣으면.. 계속 공간이 늘어난다.
+		
+		//1 + 3 = ?
+		
+		ArrayList<Integer> list = new ArrayList<Integer>();
+		
+		list.add(10);
+		
+		System.out.println(list.size()); //내부 배열의 길이 4, size는 1
+		
+		list.add(20);
+		list.add(30);
+		list.add(40);
+		
+		System.out.println(list.size()); //list.length가 아닌 들어있는 데이터 수
+		
+		
+		list.add(50);
+		list.add(60);
+		list.add(70);
+		list.add(80);
+		list.add(90);
+		
+		System.out.println(list.size()); //list.length가 아닌 들어있는 데이터 수
+		
+		
+		
+		
+		
+		
+		
+	}
+
+	
 	private static void m5() {
 		
 		//선택?
@@ -233,7 +337,7 @@ public class Ex56_ArrayList {
 		
 		//2. 요소의 개수
 		//- int size()
-		System.out.println(list.size()); //5
+		System.out.println(list.size()); //6
 		
 		
 		//3. 요소의 접근
@@ -248,9 +352,9 @@ public class Ex56_ArrayList {
 		//4. 요소의 수정
 		//- list[0] = 10; 대입, 수정
 		//- String set(int index, T new Value)
-		//String temp = list.set(2, "파인애플");
+		String temp = list.set(2, "파인애플");
 		list.set(2, "파인애플");
-		//System.out.println(temp);
+		System.out.println(temp);
 		System.out.println(list.get(2));
 		System.out.println();
 		
@@ -457,5 +561,29 @@ class Student {
 	
 	
 }
+
+
+
+//Member m = new Member();
+
+class Member {
+	
+	private int a;
+	
+	private String b;
+	
+	private int[] c;
+	
+	public Member() {
+		a = 10;
+		b = "홍길동";
+		c = new int[5];
+	}
+	
+}
+
+
+
+
 
 
