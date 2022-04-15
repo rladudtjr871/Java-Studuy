@@ -2,8 +2,12 @@ package com.test.java.stream;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import com.test.data.Data;
 import com.test.data.User;
@@ -40,20 +44,310 @@ public class Ex76_Stream {
 		  - 앞의 스트림의 요소를 최종 처리하는 메소드
 		 
 		   
+		  
+		  스트림 > JavaScript 유사 제공
+		  
+		   
 		   
 		 */
 		
 		//m1();
 		//m2();
 		//m3();
-		m4();
-		
-		
-		
+		//m4();
+		//m5();
+		//m6();
+		//m7();
+		//m8();
+		//m9();
+		m10();
 		
 		
 
 	}//main
+
+	private static void m10() {
+		
+		List<Integer> list = Data.getIntList(10);
+		
+		System.out.println(list);
+		
+		list.stream()
+				.filter(n -> n >= 50)
+				//.peek(n -> System.out.println("@" + n))
+				.filter(n -> n % 2 == 1)
+				//.peek(n -> System.out.println("#" + n))
+				.forEach(n -> System.out.println(n));
+		
+				
+		
+		
+	}
+
+	private static void m9() {
+		
+		List<Integer> list = Data.getIntList();
+		
+		//총합           Stream<Integer>     IntStream   
+		System.out.println(list.stream().mapToInt(n -> n).sum());
+	
+		System.out.println(list.stream().mapToInt(n -> n).average().getAsDouble());
+		
+		
+		System.out.println(Data.getUserList().stream()
+												.filter(u -> u.getGender() == 1)
+												.mapToInt(u -> u.getHeight())
+												.average().getAsDouble());
+		
+		
+		
+	}
+
+	private static void m8() {
+		
+		List<Integer> list = Data.getIntList();
+		
+		//최댓값? 최솟값?
+		System.out.println(Collections.max(list));
+		System.out.println(Collections.min(list));
+		
+		System.out.println(list.stream().max((a,b) -> a - b));
+		System.out.println(list.stream().max((a,b) -> b - a));
+		
+		//list.clear(); //100 -> 0
+		
+		Optional<Integer> result = list.stream().max((a,b) -> a - b);
+		
+		if (result.isPresent()) {
+			System.out.println("최대값: " + result.get()); //get()메소드로 인해 int형으로 반환된다.
+		} else {
+			System.out.println("빈배열");
+		}
+		
+		//"문자열".indexOf("문자열"); > 없는 경우 null이 아닌 -1을 반환하는 대표적인 경우
+		
+		
+		//지역 변수
+		//	- 값형 + 참조형 > 초기화를 하지 않으면 사용 불가능!
+		
+		//멤버 변수
+		//- 생성자가 무조건 초기화를 한다.
+		//- 값형 > 0, 0.0, false..
+		//- 참조형 > null
+		
+		//값형: null을 가질 수 없다.
+		//참조형: null을 가질 수 있다.
+		
+		//int a;
+		//System.out.println(a); //(x)
+		
+		//int a = null; (x)
+		
+		//Calendar c;
+		//System.out.println(c); //(x)
+		
+		//Calendar c = null; (o)
+		
+		
+		Test t = new Test();
+		System.out.println(t.a);
+		System.out.println(t.b);
+		System.out.println(t.c);
+		System.out.println(t.d);
+		
+		
+		User temp = getUser();
+		//int num = getNum();
+				
+		
+		
+		//Optional<T> > 값형이 null을 가질 수 없는 특성을 보완하기 위해 만들어진 자료형
+		
+		
+		Optional<User> maxUser = Data.getUserList().stream().max((u1,u2) -> u1.getAge() - u2.getAge());
+		
+		System.out.println(maxUser.get());
+		
+		
+		
+	}
+	
+//	private static int getNum() {
+//		
+//		boolean condition = true; //or false
+//		
+//		if (condition) {
+//			return 100;
+//		}
+//		
+//		return ?; //돌려주기 싫은 표현
+//		
+//	}
+	
+	
+	
+	private static User getUser() {
+		
+		boolean condition = true; //or false
+		
+		if (condition) {
+			return new User();
+		}
+		
+		
+		return null; //아무것도 돌려주기 싫음
+		
+	}
+	
+	
+
+	private static void m7() {
+
+		//집계, Reduce
+		//- count(), max(), min(), sum(), avg()
+		//- 최종처리 파이프
+		//- 요소들을 가공해서 축소하는 작업, 통계값
+		
+		System.out.println(Data.getIntList().stream().count());
+		
+		//stream has already been operated upon or closed
+		
+		List<User> list = Data.getUserList();
+				
+		System.out.println("총 인원 수: " + list.stream().count());
+		System.out.println("남자 수: " + list.stream().filter(u -> u.getGender() == 1).count());
+		System.out.println("남자 수: " + list.stream().filter(u -> u.getGender() == 2).count());
+		
+		System.out.println(Data.getIntList().stream().distinct().count());
+		
+		
+	}
+
+	private static void m6() {
+		
+		//매칭
+		//- allMatch(), anyMatch(), noneMatch()
+		//- 최종처리 파이프
+		//- 스트림 요소들이 제시하는 조건을 만족 유무 판단
+		//	a. boolean allMatch(Predicate): 모든 요소가 조건을 100% 만족?
+		//  b. boolean anyMatch(Predicate): 일부 요소가 조건을 만족?
+		//  c. boolean noneMatch(Predicate): 모든 요소가 조건을 0% 만족? (불만족)
+		
+		//int[] nums = { 2, 4, 6, 8, 10 };
+		int[] nums = { 1, 3, 5, 7, 9 };
+		
+		//요구사항] 배열 안에 짝수만 들어있는지?
+		boolean result = false;
+		
+		
+		for (int n : nums) {
+			if (n % 2 == 1) {
+				result = true;
+				break;
+			}
+		}
+		
+		
+		if (result) {
+			System.out.println("홀수 발견!!");
+		} else {
+			System.out.println("짝수만~");
+		}
+		
+		
+		//allMatch() > && 연산자 성질
+		//1. nums 안에 각 요소를 Predicate에 넣어서 검사해라!!
+		//2. 모든 요소가 true를 반환 > 자신도 true 반환
+		//3. 일부 요소가 false를 반환 > 자신은 false 반환
+		System.out.println(Arrays.stream(nums).allMatch(n -> n % 2 == 0));
+		System.out.println(Arrays.stream(nums).noneMatch(n -> n % 2 == 0)); //모두 다 불만족하냐? > true, false
+		
+		//anyMatch() > || 연산자 성질
+		//1. nums 안에 각 요소를 Predicate에 넣어서 검사해라!!
+		//2. 일부 요소가 true를 반환 > 자신도 true 반환
+		//3. 모든 요소가 false를 반환 > 자신은 false 반환
+		
+		//int[] nums = { 2, 4, 6, 8, 10 };
+		System.out.println(Arrays.stream(nums).anyMatch(n -> n % 2 == 0));
+		
+		
+		//여자 > 이상형 > User + 175cm이상 + 65kg이상 > anyMatch
+		
+		result = Data.getUserList().stream()
+												.filter(u -> u.getGender() == 1)
+												.anyMatch(u -> u.getHeight() >= 170 && u.getWeight() >= 65);
+												
+		if (result) {
+			System.out.println("이상형이 있습니다.");		
+			
+			Data.getUserList().stream()
+								.filter(u -> u.getGender() == 1)
+								.filter(u -> u.getHeight() >= 175)
+								.filter(u -> u.getWeight() >= 65)
+								.forEach(u -> System.out.println(u));
+			
+		} else {
+			System.out.println("다음 기회에~");
+		}
+		
+		
+		
+	}
+
+	private static void m5() {
+		
+		Data.getUserList().stream()
+				.filter(user -> user.getGender() == 1)
+				.map(user -> user.getWeight())
+				.forEach(weight -> System.out.println(weight));
+		System.out.println();
+		
+		//정렬
+		//- sorted()
+		//- 중간처리 파이프
+		//- 배열, 컬렉션의 sort()와 사용법이 동일
+		//  a. 단일값 오름차순 > sort()
+		//  b. 단일값 내림차순 > sort(구현)
+		//  c. 복합값 오름차순, 내림차순 > sort(구현)
+		
+		List<Integer> nums = Data.getIntList(10);
+		System.out.println(nums);
+		
+		nums.sort((a,b) -> a - b);
+		nums.sort(Comparator.naturalOrder()); //오름차순 정렬 객체
+		nums.sort(Comparator.reverseOrder()); //내림차순 정렬 객체
+		
+		System.out.println(nums);
+		
+		//Collections.sort(nums);
+		//Collections.sort(nums, 구현);
+		
+		//nums.stream().sorted()
+		//nums.stream().sorted(구현)
+		
+		//배열 정렬(x) > 스트림 정렬(o)
+		//**** 스트림의 조작은 원본 배열에 영향을 미치지 않는다.
+		nums.stream().sorted().forEach(n -> System.out.println(n));
+		
+		System.out.println(nums);
+		
+		nums.stream().sorted((a,b) -> b-a).forEach(n -> System.out.println(n));
+		System.out.println();
+		
+		Data.getIntList().stream()
+							.distinct()
+							.filter(n -> n % 2 == 0)
+							.sorted()
+							.forEach(n -> System.out.println(n));
+		
+		
+		
+		
+		
+		
+		
+		
+	}
 
 	private static void m4() {
 		
@@ -476,4 +770,16 @@ class Result {
 }
 
 
+
+
+class Test {
+	
+	public int a;
+	public boolean b;
+	
+	public String c;
+	public User d;
+		
+	
+}
 
