@@ -64,20 +64,3 @@ public class Q04 {
 
 	
 }
-
-
-
-
-
-
-
-
-
-
-
-//if (i<j) {
-//System.out.print(" ");
-//
-//}else {
-//System.out.printf("%c", alpha);
-//alpha++; //반쪽만 출력

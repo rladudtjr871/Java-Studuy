@@ -54,23 +54,20 @@ public class Q08 {
 				first += String.format("%d, ", i);
 			}
 			
-			for(int j=1; j<=secondNum; j++) {
-				
-				if (secondNum%j == 0) {
-					second += String.format("%d, ", j);
-					
-					if ((firstNum%i == 0) && (secondNum%j == 0)) {
+			if ((firstNum%i == 0) && (secondNum%i == 0)) {
 						
-						if(i == j) {
-							result += String.format("%d,", i);
-						}
+				result += String.format("%d,", i);
 						
-					}
-				
-				}
-				
 			}
 			
+		}
+				
+			
+		
+		for(int j=1; j<=secondNum; j++) {
+			if (secondNum%j == 0) {
+				second += String.format("%d, ", j);
+			}
 		}
 		
 		System.out.printf("%d의 약수: %s\b\n",firstNum, first);

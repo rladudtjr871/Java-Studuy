@@ -29,16 +29,19 @@ public class Q06 {
 		
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		
+		//국어
 		System.out.print("국어 : ");
 		int kor = Integer.parseInt(reader.readLine());
 		
+		//영어
 		System.out.print("영어 : ");
 		int eng = Integer.parseInt(reader.readLine());
 		
+		//수학
 		System.out.print("수학 : ");
 		int math = Integer.parseInt(reader.readLine());
 		
-		  
+		//메소드 호출
 		String result = test(kor, eng, math);
 		System.out.println(result);
 		
@@ -49,6 +52,7 @@ public class Q06 {
 	//국영수 평균(과락o)
 	public static String test(int kor, int eng, int math) {
 		
+		//int average = kor + eng + math / 3;  연산식은 변수에 담아주는게 좋은 것 같다.
 		String result = kor < 40 || eng < 40 || math < 40 ? "불합격입니다." : (kor + eng + math) / 3 < 60 ? "불합격입니다." : "합격입니다.";
 		
 		return result;

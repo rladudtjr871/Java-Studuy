@@ -52,9 +52,11 @@ public class Q07 {
 	public static int getTime(int station, int change, int time) {
 
 	 String time2 = 0 < time && time < 4 ? (time == 1 ? "3" : (time == 2 ? "4": "5")) : "잘못된 값";
+	 
 	 int result = (station * 2) + (change * Integer.parseInt(time2));	
 	 
-		return result;
+	 //station * 2 연산을 변수에 따로 받아주는게 좋은 것 같다.
+	 return result;
 	}
 	
 	

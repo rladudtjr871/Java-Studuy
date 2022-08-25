@@ -9,7 +9,15 @@ public class Q05 {
 
 
 		//5.자전거
-		
+			//요구사항] 사용자가 페달을 밟은 횟수를 입력하면 자전거가 총 몇 m를 달렸는지 출력하시오.
+			//자전거 바퀴 지름(26인치), 기어비 1:1, 모든 출력 숫자 천단위 표기 
+				
+			//설계
+			//1. 사용자가 밟은 페달 횟수를 입력 받을 BufferdReader 생성
+			//2. 26인치를 미터로 환산 (0.6604)
+			//3. 원의 둘레를 구하기 위한 3.14
+			//4. 페달 횟수 * 0.6604 * 3.14 * 2
+			//5. printf를 이용해 값 출력
 		
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		

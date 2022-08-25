@@ -48,6 +48,7 @@ public class Q08 {
 		public static int getApple(int sunny, int foggy) {
 			
 			int result = ((sunny * 5) + (foggy * 2) >= 110) ? (((sunny * 5) + (foggy * 2) - 100) / 10) : 0;
+			//사과나무 높이 비교 연산을 따로 변수로 빼주어서 하는게 좋은 것 같다
 			
 			return result;
 		}//getApple
